@@ -1,5 +1,3 @@
 def solution(s):
-    answer = ''
-    arr = list(map(int,s.split(' ')))
-    answer = str(min(arr)) + " " + str(max(arr))
-    return answer
+    data = list(map(int, s.split()))
+    return str(min(data)) + " " + str(max(data))
