@@ -1,5 +1,3 @@
-from collections import deque
-
 N = int(input())
 
 homes = []
@@ -9,31 +7,29 @@ for _ in range(N):
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-
-def bfs(homes, x, y):
-    queue = deque()
-    queue.append((x, y))
-    homes[x][y] = 0
-    count = 1
-    while queue:
-        x, y = queue.popleft()
+def dfs(x,y):
+    if x <0 or x >= N or y < 0 or y >= N:
+        return False
+    if homes[x][y] == 1:
+        global count
+        count += 1
+        homes[x][y] = 0
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-            if nx < 0 or nx >= N or ny < 0 or ny >= N:
-                continue
-            if homes[nx][ny] == 1:
-                homes[nx][ny] = 0
-                queue.append((nx, ny))
-                count += 1
-    return count
+            dfs(nx,ny)
+        return True
+    return False
 
-
+count = 0
 answer = []
+
 for i in range(N):
     for j in range(N):
-        if homes[i][j] == 1:
-            answer.append(bfs(homes, i, j))
+        if dfs(i,j):
+            answer.append(count)
+            count = 0
+
 answer.sort()
 print(len(answer))
 for i in answer:
