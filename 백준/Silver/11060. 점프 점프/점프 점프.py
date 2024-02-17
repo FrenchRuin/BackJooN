@@ -3,11 +3,11 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-dp = [N + 1] * N  # 최솟값을 주기위해 최대 큰 값을 가져간다.
-dp[0] = 0
 
 miro = list(map(int, input().split()))
 
+dp = [N + 1] * N
+dp[0] = 0
 for i in range(N):
     for j in range(1, miro[i] + 1):
         if i + j < N:
