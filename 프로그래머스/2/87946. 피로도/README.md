@@ -1,10 +1,10 @@
 # [level 2] 피로도 - 87946 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/87946) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/87946?language=python3) 
 
 ### 성능 요약
 
-메모리: 74.7 MB, 시간: 0.14 ms
+메모리: 10.2 MB, 시간: 0.08 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 11월 4일 22:49:37
+2024년 02월 21일 22:07:19
 
 ### 문제 설명
 
