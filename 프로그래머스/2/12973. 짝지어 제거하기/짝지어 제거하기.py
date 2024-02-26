@@ -1,12 +1,14 @@
 def solution(s):
-    answer = []
+    answer = -1
+    ll = []
     
-    for i in range(len(s)) :
-        if len(answer) == 0 :
-            answer.append(s[i])
-        elif answer[-1] == s[i] :
-            answer.pop()
-        else :
-            answer.append(s[i])
+    for char in s :
+        if len(ll) == 0 :
+            ll.append(char)
+        elif ll[-1] == char :
+            ll.pop()
+        else:
+            ll.append(char)
 
-    return 1 if len(answer) == 0 else 0
+    
+    return 1 if len(ll) == 0 else 0
