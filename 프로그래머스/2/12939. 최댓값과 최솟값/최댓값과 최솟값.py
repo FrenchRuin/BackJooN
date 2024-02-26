@@ -1,3 +1,4 @@
 def solution(s):
-    data = list(map(int, s.split()))
-    return str(min(data)) + " " + str(max(data))
+    answer = ''
+    ll = list(map(int,s.split()))
+    return str(min(ll)) + ' ' + str(max(ll))
