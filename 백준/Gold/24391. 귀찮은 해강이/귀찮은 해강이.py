@@ -2,38 +2,38 @@ import sys
 
 input = sys.stdin.readline
 
-N,M = map(int,input().split())
+N, M = map(int, input().split())
 
-buildings = [0] * (N + 1)
+graph = [0] * (N + 1)
+for i in range(1, N + 1):
+  graph[i] = i
 
 
-def findParent(V) :
-  if buildings[V] != V :
-    buildings[V] = findParent(buildings[V])
-    
-  return buildings[V]
+def union_find(V):
+  if V != graph[V]:
+    graph[V] = union_find(graph[V])
 
-def union(A,B) :
-  A = findParent(A)
-  B = findParent(B)
-  if A> B :
-    buildings[A] = B
+  return graph[V]
+
+
+def union(A, B):
+  A = union_find(A)
+  B = union_find(B)
+  if A > B:
+    graph[A] = B
   else:
-    buildings[B] = A
+    graph[B] = A
 
 
-for i in range(1,N + 1) :
-  buildings[i] = i
+for _ in range(M):
+  A, B = map(int, input().split())
+  union(A, B)
 
-for _ in range(M) :
-  A,B = map(int,input().split())
-  union(A,B)
+plans = list(map(int, input().split()))
 
-plans = list(map(int,input().split()))
+cnt = 0
+for i in range(1, len(plans)):
+  if union_find(plans[i - 1]) != union_find(plans[i]):
+    cnt += 1
 
-answer = 0
-for i in range(1, len(plans)) :
-  if findParent(plans[i-1]) != findParent(plans[i]) :
-    answer += 1
-
-print(answer)
+print(cnt)
