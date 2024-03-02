@@ -2,37 +2,36 @@ import sys
 
 input = sys.stdin.readline
 sys.setrecursionlimit(1000000)
+
 N, M = map(int, input().split())
 
-joint = [0] * (N + 1)
+graph = [0] * (N + 1)
 
 for i in range(1, N + 1):
-    joint[i] = i
+    graph[i] = i
 
 
 def union_find(V):
-    if V != joint[V]:
-        joint[V] = union_find(joint[V])
+    if V != graph[V]:
+        graph[V] = union_find(graph[V])
+    return graph[V]
 
-    return joint[V]
 
-
-def union(A, B):
-    A = union_find(A)
-    B = union_find(B)
-
-    if A > B:
-        joint[A] = B
+def union(a, b):
+    a = union_find(a)
+    b = union_find(b)
+    if a > b:
+        graph[a] = b
     else:
-        joint[B] = A
+        graph[b] = a
 
 
 for i in range(1, M + 1):
     T, A, B = map(int, input().split())
     if T == 0:
         union(A, B)
-    elif T == 1:
-        if union_find(joint[A]) == union_find(joint[B]):
-            print("YES")
-        else:
+    else:
+        if union_find(A) != union_find(B) :
             print("NO")
+        else:
+            print("YES")
